@@ -34,7 +34,14 @@ class EOESSensor(SensorEntity):
 
             # join texts
             text_value = "".join(r.get("text", "") for r in results)
-            return text_value if text_value else None
+            if not text_value:
+                return None
+
+            # try converting to float
+            try:
+                return float(text_value)
+            except ValueError:
+                return None
 
         return data.get(self.type_)
 
