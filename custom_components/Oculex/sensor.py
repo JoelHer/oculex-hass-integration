@@ -8,17 +8,17 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     entities = []
     for stream_id in coordinator.data.keys():
-        entities.append(EOESSensor(coordinator, stream_id, "measurement"))
+        entities.append(EOESSensor(coordinator, stream_id, "ocr", "measurement"))
         entities.append(EOESSensor(coordinator, stream_id, "status"))
 
     async_add_entities(entities)
 
 
 class EOESSensor(SensorEntity):
-    def __init__(self, coordinator, stream_id, type_):
+    def __init__(self, coordinator, stream_id, type_, device_class="measurement"):
         self.coordinator = coordinator
         self.stream_id = stream_id
-        self.type_ = type_
+        self.type_ = _attr_device_class = device_class
         self._attr_name = f"Oculex {stream_id} {type_}"
         self._attr_unique_id = f"oculex_{stream_id}_{type_}"
 
