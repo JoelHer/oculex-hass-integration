@@ -18,7 +18,8 @@ class EOESSensor(SensorEntity):
     def __init__(self, coordinator, stream_id, type_, device_class="measurement"):
         self.coordinator = coordinator
         self.stream_id = stream_id
-        self.type_ = _attr_device_class = device_class
+        self.type_ = type_
+        self._attr_device_class = device_class
         self._attr_name = f"Oculex {stream_id} {type_}"
         self._attr_unique_id = f"oculex_{stream_id}_{type_}"
 
