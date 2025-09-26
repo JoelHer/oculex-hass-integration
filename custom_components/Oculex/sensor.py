@@ -8,7 +8,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     entities = []
     for stream_id in coordinator.data.keys():
-        entities.append(EOESSensor(coordinator, stream_id, "ocr"))
+        entities.append(EOESSensor(coordinator, stream_id, "measurement"))
         entities.append(EOESSensor(coordinator, stream_id, "status"))
 
     async_add_entities(entities)
